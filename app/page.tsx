@@ -2,9 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+interface Country {
+  name: {
+    common: string;
+  };
+}
+
 export default function Home() {
 
-  const [countries, setCountries] = useState<string[]>([]);
+const [countries, setCountries] = useState<string[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<string>('');
   const [cities, setCities] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>('');
@@ -13,7 +19,7 @@ export default function Home() {
     // Fetch countries when the component mounts
     axios.get('https://restcountries.com/v3.1/all')
       .then(response => {
-        const countryNames = response.data.map((country: any) => country.name.common);
+        const countryNames = response.data.map((country: Country) => country.name.common);
         // Sort countries in alphabetical order
         setCountries(countryNames.sort());
       })
@@ -26,12 +32,12 @@ export default function Home() {
       axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
         country: selectedCountry
       })
-        .then(response => {
-          // Sort cities in alphabetical order
-          setCities(response.data.data.sort());
-          setSelectedCity(''); // Reset city selection when country changes
-        })
-        .catch(error => console.error('Error fetching cities:', error));
+      .then(response => {
+        // Sort cities in alphabetical order
+        setCities(response.data.data.sort());
+        setSelectedCity(''); // Reset city selection when country changes
+      })
+      .catch(error => console.error('Error fetching cities:', error));
     } else {
       setCities([]);
     }
