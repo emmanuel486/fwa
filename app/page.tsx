@@ -10,7 +10,7 @@ interface Country {
 
 export default function Home() {
 
-const [countries, setCountries] = useState<string[]>([]);
+  const [countries, setCountries] = useState<string[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<string>('');
   const [cities, setCities] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>('');
@@ -50,9 +50,6 @@ const [countries, setCountries] = useState<string[]>([]);
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(event.target.value);
   };
-
-
-
 
   return (
     <>
@@ -208,8 +205,8 @@ const [countries, setCountries] = useState<string[]>([]);
 
                   </div>
                 </div>
-                <div className="banner-img">
-                  <img className="img-fluid mt-4 banner-image" src={'images/vision.jpg'} alt={'vision'} />
+                <div  className="banner-imgvision">
+                  <img className="img-fluid mt-4" src={'images/vision.jpg'} alt={'vision'} />
                 </div>
                 <div className="row g-3 pt-100">
                   <div
@@ -219,7 +216,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-1.png"
+                          src="/images/roadmap/clock.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -240,7 +237,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-2.png"
+                          src="/images/roadmap/like.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -261,7 +258,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-3.png"
+                          src="/images/roadmap/management.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -309,7 +306,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-1.png"
+                          src="/images/roadmap/transferring.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -330,7 +327,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-2.png"
+                          src="/images/roadmap/long-term.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -351,7 +348,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-3.png"
+                          src="/images/roadmap/communities.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -371,7 +368,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-3.png"
+                          src="/images/roadmap/government.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -414,7 +411,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-1.png"
+                          src="/images/roadmap/networking.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -436,7 +433,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-2.png"
+                          src="/images/roadmap/analytics.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -456,7 +453,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-3.png"
+                          src="/images/roadmap/loan.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -480,7 +477,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-1.png"
+                          src="/images/roadmap/parents.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -502,7 +499,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-2.png"
+                          src="/images/roadmap/blockchain.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -524,7 +521,7 @@ const [countries, setCountries] = useState<string[]>([]);
                     <div className="roadmap-fin__item">
                       <figure className="roadmap-fin__icon">
                         <img
-                          src="/images/roadmap/roadmap-fin-3.png"
+                          src="/images/roadmap/resolute.png"
                           alt="roadmap"
                         />
                       </figure>
@@ -591,11 +588,11 @@ const [countries, setCountries] = useState<string[]>([]);
                         </p>
                       </div>
                       <div className="services-fin__item-thumb">
-                        {/* <img
+                        <img
                           className="img-move"
-                          src="/images/services/services-fin-1.png"
+                          src="/images/services/pexels-pixabay-221185.jpg"
                           alt="service"
-                        /> */}
+                        />
                       </div>
                     </div>
                     <div className="services-fin__item an-pine-vanish">
@@ -622,11 +619,11 @@ const [countries, setCountries] = useState<string[]>([]);
                         </p>
                       </div>
                       <div className="services-fin__item-thumb">
-                        {/* <img
+                        <img
                           className="img-move"
-                          src="/images/services/services-fin-2.png"
+                          src="/images/services/pexels-daniel-duarte-270529097-15797915.jpg"
                           alt="service"
-                        /> */}
+                        />
                       </div>
                     </div>
                     <div className="services-fin__item an-pine-vanish">
@@ -653,11 +650,11 @@ const [countries, setCountries] = useState<string[]>([]);
                         </p>
                       </div>
                       <div className="services-fin__item-thumb">
-                        {/* <img
+                        <img
                           className="img-move"
-                          src="/images/services/services-fin-3.png"
+                          src="/images/services/pexels-kampus-7551583.jpg"
                           alt="service"
-                        /> */}
+                        />
                       </div>
                     </div>
                   </div>
