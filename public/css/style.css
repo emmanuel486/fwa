@@ -163,7 +163,7 @@ h2.h2 {
 }
 
 h3.h3 {
-  font-size: 44px;
+  font-size: 64px;
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -245,7 +245,7 @@ h6.h6 {
 html,
 body {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 155.556%;
   font-family: var(--ff-dm-sans);
   color: var(--gray);
@@ -257,7 +257,7 @@ body {
 @media only screen and (max-width: 767.98px) {
   html,
   body {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
