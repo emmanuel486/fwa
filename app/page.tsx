@@ -110,7 +110,10 @@ export default function Home() {
                         <h1 className="text-center h1 title">
                           {/* FAMILY WEALTH ASSOCIATION */}
                           {/* <span className="word-animation"></span> */}
-                          <img className='img' src="/images/fwa banner.png" width={300} height={300}/>
+                          <div className='container d-flex align-items-center justify-content-center justify-items-center'>
+                          <img className='img-fluid' src="/images/fwa banner.png" width={200} height={200}/>
+                          </div>
+                          
                         </h1>
                         <img
                           className="img-cursor d-none d-md-block"
@@ -219,6 +222,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/clock.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Common Capability</h5>
@@ -240,6 +245,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/like.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Common Good</h5>
@@ -261,6 +268,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/management.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Common Wealth</h5>
@@ -309,6 +318,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/transferring.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Enduring Legacy</h5>
@@ -330,6 +341,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/long-term.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Resilient Futures</h5>
@@ -351,6 +364,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/communities.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Thriving Communities</h5>
@@ -371,6 +386,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/government.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Transformative Governance</h5>
@@ -414,6 +431,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/networking.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Proven networks</h5>
@@ -436,6 +455,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/analytics.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Cutting edge research</h5>
@@ -456,6 +477,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/loan.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Global investments</h5>
@@ -480,6 +503,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/parents.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Family education and
@@ -502,6 +527,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/blockchain.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Blockchain security</h5>
@@ -524,6 +551,8 @@ export default function Home() {
                         <img
                           src="/images/roadmap/resolute.png"
                           alt="roadmap"
+                          width={45}
+                          height={45}
                         />
                       </figure>
                       <h5 className="h5">Dispute resolution</h5>
