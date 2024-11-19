@@ -108,8 +108,9 @@ export default function Home() {
                       </div>
                       <div className="hero-fin__title">
                         <h1 className="text-center h1 title">
-                          FAMILY WEALTH ASSOCIATION
+                          {/* FAMILY WEALTH ASSOCIATION */}
                           {/* <span className="word-animation"></span> */}
+                          <img className='img' src="/images/fwa banner.png" width={300} height={300}/>
                         </h1>
                         <img
                           className="img-cursor d-none d-md-block"
@@ -130,20 +131,20 @@ export default function Home() {
                 <div className="row g-4 justify-content-between">
                   <div className="col-md-6 col-xl-5">
                     <div className="about-fin__left">
-                      <span className="sub-heading fade_up_anim" data-delay=".2">
+                      {/* <span className="sub-heading fade_up_anim" data-delay=".2">
                         ABOUT US
-                      </span>
-                      <div className="about-fin__experience">
+                      </span> */}
+                      {/* <div className="about-fin__experience">
                         <h3 className="h3 experience">
                           16
                           <em>+</em>
                         </h3>
                         <br /><br />
                         <p className="info">YEARS OF EXPERIENCE</p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
-                  <div className="col-md-6 col-xl-6">
+                  {/* <div className="col-md-6 col-xl-6">
                     <div className="about-fin__right">
                       <h3 className=" fade_up_anim" data-delay=".4">
                         We are proud to faithfully serve our members histories and their present and
@@ -181,7 +182,7 @@ export default function Home() {
                         Join us
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
