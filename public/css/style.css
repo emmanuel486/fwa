@@ -7646,7 +7646,7 @@ h5.preloader-text::after {
 }
 @media only screen and (max-width: 767.98px) {
   .services-fin__item-content p {
-    font-size: 17px;
+    font-size: 14px;
     margin-top: 20px;
   }
 }
@@ -9108,7 +9108,7 @@ h5.preloader-text::after {
   font-weight: 500;
 }
 .faq-fin__accordion .accordion-button {
-  font-size: unset;
+  font-size: 13px;
   color: unset;
   padding: 44px 48px 25px;
   transition: var(--transition);
