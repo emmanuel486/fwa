@@ -32,12 +32,12 @@ export default function Home() {
       axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
         country: selectedCountry
       })
-      .then(response => {
-        // Sort cities in alphabetical order
-        setCities(response.data.data.sort());
-        setSelectedCity(''); // Reset city selection when country changes
-      })
-      .catch(error => console.error('Error fetching cities:', error));
+        .then(response => {
+          // Sort cities in alphabetical order
+          setCities(response.data.data.sort());
+          setSelectedCity(''); // Reset city selection when country changes
+        })
+        .catch(error => console.error('Error fetching cities:', error));
     } else {
       setCities([]);
     }
@@ -51,6 +51,55 @@ export default function Home() {
     setSelectedCity(event.target.value);
   };
 
+  const [activeCarousel, setActiveCarousel] = useState('carouselone');
+
+  useEffect(() => {
+    const handleRadioChange = (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.checked) {
+        setActiveCarousel(target.id);
+      }
+    };
+
+    const radioOne = document.getElementById('carouselone') as HTMLInputElement;
+    const radioTwo = document.getElementById('carouseltwo') as HTMLInputElement;
+
+    radioOne?.addEventListener('change', handleRadioChange);
+    radioTwo?.addEventListener('change', handleRadioChange);
+
+    return () => {
+      radioOne?.removeEventListener('change', handleRadioChange);
+      radioTwo?.removeEventListener('change', handleRadioChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Function to handle closing the navbar
+    const handleNavLinkClick = () => {
+      const navbarToggler = document.querySelector('.navbar-toggler') as HTMLElement | null;
+      const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement | null;
+
+      if (navbarCollapse?.classList.contains('show') && navbarToggler) {
+        navbarToggler.click();
+      }
+    };
+
+    // Adding event listeners to all nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', handleNavLinkClick);
+    });
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      navLinks.forEach(link => {
+        link.removeEventListener('click', handleNavLinkClick);
+      });
+    };
+  }, []);
+
+
+
   return (
     <>
       <a href="#" id="scroll-top" className="back-to-top-btn">
@@ -60,26 +109,97 @@ export default function Home() {
       <div id="smooth-wrapper">
         <header>
           {/*Menu Start*/}
-          <div className="menu-area menu-area__fin menu-area--fixed-dark">
-            <div className="container container-2xl">
-              <div className="row align-items-center position-relative">
-                <div className="col-lg-12 hamburger-menu position-relative">
-                  <div
-                    className="nav-wrap d-flex justify-content-between align-items-center"
-                  >
-                    <div className="menu-logo-wrap">
-                      {/*<a href="index.html"*/}
-                      {/*>*/}
-                      <img src="/images/fwa.png" alt="" width={'120px'}
-                      />
-                      {/*</a>*/}
+          {/* <div className="menu-area menu-area__fin menu-area--fixed-dark">
+          <div className="container container-2xl">
+            <div className="row align-items-center position-relative">
+              <div className="col-lg-12 hamburger-menu position-relative">
+                <div
+                  className="nav-wrap d-flex justify-content-between align-items-center"
+                >
+                  <div className="menu-logo-wrap">
+                    <a href="index.html"
+                      ><img src="/images/fwa banner.png" alt="" width={130}
+                    /></a>
+                  </div>
+                  <div className="mainmenu text-right">
+                    <ul className="home-menu">
+                     
+                      
+                     
+                      <li ><a href="about-us.html">About</a></li>
+                      <li><a href="contact.html ">Mission</a></li>
+                      <li><a href="contact.html ">Method</a></li>
+                      <li><a href="contact.html ">Member Benefits</a></li>
+                      <li><a href="contact.html ">Community</a></li>
+                      <li><a href="contact.html ">Training</a></li>
+                      <li><a href="contact.html ">Join FWA</a></li>
+                      
+                    </ul>
+                    <div className="menu-btn-wrap menu-btn-wrap__mobile">
+                      <div className="d-flex justify-content-between"></div>
                     </div>
-
+                  </div>
+                  <div
+                    className="nav-wrap nav-wrap--extend d-flex justify-content-between align-items-center"
+                  >
+                    <div className="menu-btn-wrap menu-btn-wrap__desktop gap-4 d-none">
+                      <button className="search__btn">
+                        <i className="bi bi-search"></i>
+                      </button>
+                      <div className="menu-btn">
+                        <button className="side-panel__activator">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div> */}
+
+<nav className="navbar navbar-expand-lg">
+      <div className="container-fluid">
+        <div className="menu-logo-wrap">
+          <a href="#">
+            <img src="/images/fwa banner.png" alt="" width={140} />
+          </a>
+        </div>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarScroll">
+          <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Aboutsec">About</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Missionsec">Mission</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Methodsec">Method</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Memberbenefitssec">Member Benefits</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">Community</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Trainingsec">Training</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#Joinsec">Join FWA</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
           {/*Menu end*/}
         </header>
 
@@ -90,30 +210,37 @@ export default function Home() {
             <div className="hero-fin">
               <div className="container container-2xl">
                 <div className="row">
-                  <div className="col-12">
-                    <div className="hero-fin__content">
+                  <div className="col-12" id="Aboutsec">
+                    <div className="hero-fin__content" >
                       <div className="upper-content">
-                        <div className="btn-container">
-                          <a
+                        <div className="btn-container ">
+                          {/* <a
                             href=""
                             className="common-btn__variation9 fade_up_anim"
                             data-delay=".2">
                             Apply For Membership
-                          </a>
+                          </a> */}
+                          <img className="img-fluid banner-image" src={'images/Families of Purpose BMW.jpg'} alt={'Families of purpose'} width={600} height={600} />
                         </div>
-                        <p className="info fade_up_anim" data-delay=".4">
+                        <p className="fs-1 info fade_up_anim" data-delay=".4">
                           A private association of families, family offices, trusts and advisors seeking
                           prosperous and purposeful wealth longevity.
+                          <a
+                            href=""
+                            className="common-btn__variation9 fade_up_anim mt-4"
+                            data-delay=".2" >
+                            Apply For Membership
+                          </a>
                         </p>
                       </div>
                       <div className="hero-fin__title">
                         <h1 className="text-center h1 title">
                           {/* FAMILY WEALTH ASSOCIATION */}
                           {/* <span className="word-animation"></span> */}
-                          <div className='container d-flex align-items-center justify-content-center justify-items-center'>
+                          {/* <div className='container d-flex align-items-center justify-content-center justify-items-center'>
                           <img className='img-fluid' src="/images/fwa banner.png" width={200} height={200}/>
-                          </div>
-                          
+                          </div> */}
+
                         </h1>
                         <img
                           className="img-cursor d-none d-md-block"
@@ -192,7 +319,7 @@ export default function Home() {
             {/* about-fin end*/}
 
             {/* Vision start*/}
-            <div className="roadmap-fin pt-150">
+            {/* <div className="roadmap-fin pt-150">
               <div className="container container-2xl">
                 <div className="row justify-content-center text-center">
                   <div className="col-md-9 col-lg-8 section__header-v9">
@@ -209,7 +336,7 @@ export default function Home() {
 
                   </div>
                 </div>
-                <div  className="banner-imgvision">
+                <div className="banner-imgvision">
                   <img className="img-fluid mt-4" src={'images/vision.jpg'} alt={'vision'} />
                 </div>
                 <div className="row g-3 pt-100">
@@ -285,11 +412,11 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* Vision end*/}
 
             {/* Mission start*/}
-            <div className="roadmap-fin pt-150">
+            <div className="roadmap-fin pt-150" id="Missionsec">
               <div className="container container-2xl">
                 <div className="row justify-content-center text-center">
                   <div className="col-md-9 col-lg-8 section__header-v9">
@@ -305,10 +432,10 @@ export default function Home() {
 
                   </div>
                 </div>
-                <div className="banner-img">
+                {/* <div className="banner-img">
                   <img className="img-fluid mt-4 banner-image" src={'images/Families of Purpose.jpg'} alt={'Families of purpose'} />
-                </div>
-                <div className="row g-3 pt-100">
+                </div> */}
+                <div className="row g-3 pt-4">
                   <div
                     className="col-sm-6 col-lg-6 col-xl-3 fade_up_anim"
                     data-delay=".2"
@@ -404,8 +531,96 @@ export default function Home() {
             </div>
             {/* Mission end*/}
 
+            {/* Method Start */}
+            <div className="roadmap-fin pt-150" id="Methodsec">
+              <div className="container container-2xl">
+                <div className="row justify-content-center text-center">
+                  <div className="col-md-9 col-lg-8 section__header-v9">
+                    <h3
+                      className="h3 section__header-title-v9 fade_up_anim"
+                      data-delay=".2"
+                    >
+                      Method
+                    </h3>
+                    <p className="fade_up_anim" data-delay=".4">
+                      We have a well tested three step method called the Perpetual wealth engine that allows our clients,and their advisors create,sustain and transfer multigenerational wealth.
+                    </p>
+                  </div>
+                </div>
+                <div className="row g-3 pt-4">
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".2"
+                  >
+                    <div className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/motion.jpeg"
+                          alt="roadmap"
+                          width={45}
+                          height={45}
+                        />
+                      </figure>
+                      <h5 className="h5">The wealth in motion engine</h5>
+                      <p>
+                        Taking the first step is the hardest step.
+                        We help clients get their ideas moving by
+                        helping them break inertia and overwhelm
+                        using easy to use prompts and tools.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".4"
+                  >
+                    <div  id="itemx" className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/x.png"
+                          alt="roadmap"
+                          width={90}
+                          height={90}
+                          
+                        />
+                      </figure>
+                      <h5 className="h5">X speed wealth engine</h5>
+                      <p>
+                        We convert client net asset value into
+                        exponential, multi scenario 25-year wealth
+                        probabilities that show the clearest path to
+                        success and the required investment strategies
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".6"
+                  >
+                    <div className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/gear.jpeg"
+                          alt="roadmap"
+                          width={45}
+                          height={45}
+                        />
+                      </figure>
+                      <h5 className="h5">Evergreen wealth engine</h5>
+                      <p>
+                        In the third stage we help clients create loop wealth to the next generation by increasing heir absorbency and capacity and protecting assets from risks and transfer friction
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
             {/* Member Benefits start*/}
-            <div className="roadmap-fin pt-150">
+            <div className="roadmap-fin pt-150" id="Memberbenefitssec">
               <div className="container container-2xl">
                 <div className="row justify-content-center text-center">
                   <div className="col-md-9 col-lg-8 section__header-v9">
@@ -421,157 +636,83 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="row g-3 pt-100">
-                  <div
-                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
-                    data-delay=".2"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/networking.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Proven networks</h5>
-                      <p>
-                        Enrich your experience by
-                        spending time with over 70
-                        global families who have
-                        enjoyed seven generations
-                        and more of continuous
-                        ownership and prosperity
-                      </p>
+                <div>
+                  <div className="row g-3 pt-4 carousel-row" id="carouselonediv" style={{ display: activeCarousel === 'carouselone' ? 'flex' : 'none' }}>
+                    <div className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim" data-delay=".2">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/networking.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Proven networks</h5>
+                        <p>Enrich your experience by spending time with over 70 global families who have enjoyed seven generations and more of continuous ownership and prosperity</p>
+                      </div>
+                    </div>
+                    <div className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim" data-delay=".4">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/analytics.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Cutting edge research</h5>
+                        <p>Access data driven methodologies that take the guess work out of multi-generational planning.</p>
+                      </div>
+                    </div>
+                    <div className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim" data-delay=".6">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/loan.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Global investments</h5>
+                        <p>Get information on curated hard to find investment opportunities. Qualify for time and size restricted investment through trusted investment alliances.</p>
+                      </div>
                     </div>
                   </div>
-                  <div
-                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
-                    data-delay=".4"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/analytics.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Cutting edge research</h5>
-                      <p>
-                        Access data driven
-                        methodologies that take the
-                        guess work out of multi-
-                        generational planning.
-                      </p>
+                  <div className="row g-3 pt-4 carousel-row" id="carouseltwodiv" style={{ display: activeCarousel === 'carouseltwo' ? 'flex' : 'none' }}>
+                    <div className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim" data-delay=".2">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/parents.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Family education and bonding</h5>
+                        <p>Join our annual boat cruises and discover ancient civilizations and learn valuable lessons from expert guides on their rise and fall</p>
+                      </div>
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim" data-delay=".4">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/blockchain.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Blockchain security</h5>
+                        <p>Secure family documents including Wills, Trust Deeds, POA’s and Global Compliance registers. Release documents safely using our auto release features.</p>
+                      </div>
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim" data-delay=".6">
+                      <div className="roadmap-fin__item">
+                        <figure className="roadmap-fin__icon">
+                          <img src="/images/roadmap/resolute.png" alt="roadmap" width={45} height={45} />
+                        </figure>
+                        <h5 className="h5">Dispute resolution</h5>
+                        <p>Choose independent and highly experienced mediators that will protect your family cohesion and unity far into the future when you are unable to do so.</p>
+                      </div>
                     </div>
                   </div>
-                  <div
-                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
-                    data-delay=".6"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/loan.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Global investments</h5>
-                      <p>
-                        Get information on curated
-                        hard to find investment
-                        opportunities. Qualify for time
-                        and size restricted investment
-                        through trusted investment
-                        alliances.
-                      </p>
-                    </div>
+
+                  <div className="carousel mt-4">
+                    <input type="radio" id="carouselone" name="carousel" defaultChecked />
+                    <label htmlFor="carouselone"></label>
+                    <input type="radio" id="carouseltwo" name="carousel" />
+                    <label htmlFor="carouseltwo"></label>
                   </div>
                 </div>
-                <div className="row g-3 pt-100">
-                  <div
-                    className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim"
-                    data-delay=".2"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/parents.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Family education and
-                        bonding</h5>
-                      <p>
-                        Join our annual boat cruises
-                        and discover ancient
-                        civilizations and learn valuable
-                        lessons from expert guides on
-                        their rise and fall
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim"
-                    data-delay=".4"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/blockchain.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Blockchain security</h5>
-                      <p>
-                        Secure family documents
-                        including Wills, Trust Deeds,
-                        POA’s and Global Compliance
-                        registers. Release documents
-                        safely using our auto release
-                        features.
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    className="col-sm-6 col-lg-4 col-xl-4 fade_up_anim"
-                    data-delay=".6"
-                  >
-                    <div className="roadmap-fin__item">
-                      <figure className="roadmap-fin__icon">
-                        <img
-                          src="/images/roadmap/resolute.png"
-                          alt="roadmap"
-                          width={45}
-                          height={45}
-                        />
-                      </figure>
-                      <h5 className="h5">Dispute resolution</h5>
-                      <p>
-                        Choose independent and highly
-                        experienced mediators that will
-                        protect your family cohesion
-                        and unity far into the future
-                        when you are unable to do so.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+
+
+
               </div>
             </div>
+
             {/* Member Benefits end*/}
 
             {/* Services start*/}
-            <div className="services-fin pt-150">
+            {/* <div className="services-fin pt-150">
               <div className="container container-2xl">
                 <div
                   className="row g-4 justify-content-center justify-content-md-between align-items-center"
@@ -584,14 +725,7 @@ export default function Home() {
                       Training
                     </h2>
                   </div>
-                  {/*<div*/}
-                  {/*  className="col-sm-6 col-md-3 text-center text-md-end fade_up_anim"*/}
-                  {/*  data-delay=".4"*/}
-                  {/*>*/}
-                  {/*  <a href="service-2.html" className="common-btn__variation9">*/}
-                  {/*    Explore All*/}
-                  {/*  </a>*/}
-                  {/*</div>*/}
+                  
                 </div>
                 <div className="row pt-100">
                   <div className="col-12">
@@ -603,11 +737,7 @@ export default function Home() {
                         >
                           Conveniently online
                         </h3>
-                        {/*<ul className="custom-ul tags">*/}
-                        {/*  <li><a href="#">Goal-Driven</a></li>*/}
-                        {/*  <li><a href="#">Comprehensive Guidance</a></li>*/}
-                        {/*  <li><a href="#">Holistic Planning</a></li>*/}
-                        {/*</ul>*/}
+                        
                         <p>
                           Enjoy incisive family wealth
                           education that you can enjoy
@@ -633,11 +763,7 @@ export default function Home() {
                         >
                           Securely onsite
                         </h3>
-                        {/*<ul className="custom-ul tags">*/}
-                        {/*  <li><a href="#">Goal-Driven</a></li>*/}
-                        {/*  <li><a href="#">Comprehensive Guidance</a></li>*/}
-                        {/*  <li><a href="#">Holistic Planning</a></li>*/}
-                        {/*</ul>*/}
+                        
                         <p>
                           Keep family strategy
                           confidential with customized
@@ -664,11 +790,7 @@ export default function Home() {
                         >
                           Immersive reality
                         </h3>
-                        {/*<ul className="custom-ul tags">*/}
-                        {/*  <li><a href="#">Goal-Driven</a></li>*/}
-                        {/*  <li><a href="#">Comprehensive Guidance</a></li>*/}
-                        {/*  <li><a href="#">Holistic Planning</a></li>*/}
-                        {/*</ul>*/}
+                        
                         <p>
                           Why watch a PowerPoint when
                           you can experience a global
@@ -690,11 +812,97 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* Services end*/}
+            {/* Training Start */}
+
+            <div className="roadmap-fin pt-150" id="Trainingsec">
+              <div className="container container-2xl">
+                <div className="row justify-content-center text-center">
+                  <div className="col-md-9 col-lg-8 section__header-v9">
+                    <h3
+                      className="h3 section__header-title-v9 fade_up_anim"
+                      data-delay=".2"
+                    >
+                      Training
+                    </h3>
+                    <p className="fade_up_anim" data-delay=".4">
+                      We have three different methods for training families and institutions that provide tested , practical and usable capabilities and networks needed for multigenerational wealth success
+                    </p>
+                  </div>
+                </div>
+                <div className="row g-3 pt-4">
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".2"
+                  >
+                    <div className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/t1.jpeg"
+                          alt="roadmap"
+                          width={45}
+                          height={45}
+                        />
+                      </figure>
+                      <h5 className="h5">Secure online training</h5>
+                      <p>
+                        Enjoy incisive family wealth education that
+                        you can enjoy anywhere and anytime. Our
+                        courses are broken into memorable and
+                        easy to consume nuggets
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".4"
+                  >
+                    <div className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/t2.jpeg"
+                          alt="roadmap"
+                          width={45}
+                          height={45}
+                        />
+                      </figure>
+                      <h5 className="h5">Private onsite training</h5>
+                      <p>
+                        Keep family strategy confidential with
+                        customized secure family workshops with private
+                        family meetings and workshops in a place that’s
+                        comfortable and convenient for you
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col-sm-6 col-lg-6 col-xl-4 fade_up_anim"
+                    data-delay=".6"
+                  >
+                    <div className="roadmap-fin__item">
+                      <figure className="roadmap-fin__icon">
+                        <img
+                          src="/images/icon/t3.jpeg"
+                          alt="roadmap"
+                          width={45}
+                          height={45}
+                        />
+                      </figure>
+                      <h5 className="h5">Immersive international experiences</h5>
+                      <p>
+                      Attend live masterclasses with global 200 family leaders who have stewarded wealth in the family for over 200 unbroken years. Learn how they have maintained prosperous succession
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {/* Training end */}
 
             {/* Choose us start*/}
-            <div className="choose-us-fin pt-150 pb-150 ">
+            <div className="choose-us-fin pt-150 pb-150 " id="Joinsec">
               <div className="container-fluid container-2xl  ">
                 <div className="section__header-v9">
                   <h3
@@ -703,9 +911,7 @@ export default function Home() {
                   >
                     Apply for Membership
                   </h3>
-                  <p className="fade_up_anim" data-delay=".4">
-                    In three easy steps
-                  </p>
+
                   <div className="choose-us-fin__tabs">
                     <ul
                       className="nav nav-pills mb-3"
@@ -740,7 +946,7 @@ export default function Home() {
                           Select Membership Level
                         </button>
                       </li>
-                      <li className="nav-item" role="presentation">
+                      {/* <li className="nav-item" role="presentation">
                         <button
                           className="nav-link"
                           id="pills-achievement-tab"
@@ -753,7 +959,7 @@ export default function Home() {
                         >
                           Pay Membership Fee
                         </button>
-                      </li>
+                      </li> */}
                     </ul>
                     <div className="tab-content" id="pills-tabContent">
                       <div
@@ -1058,7 +1264,7 @@ export default function Home() {
                               <div className="col-md-6 col-xl-4 fade_up_anim" data-delay=".2">
                                 <div className="pricing-fit__item">
                                   <h4 className="h4 pricing-fit__item-price">Explorer Family</h4>
-                                  <span className="pricing-fit__item-package">150$ per annum</span>
+                                  <span className="pricing-fit__item-package">$150 per annum</span>
                                   <ul className="custom-ul pricing-fit__item-facilitys">
                                     <li>Family Boat Cruises</li>
                                     <li>Research</li>
@@ -1074,16 +1280,13 @@ export default function Home() {
                               <div className="col-md-6 col-xl-4 fade_up_anim" data-delay=".4">
                                 <div className="pricing-fit__item">
                                   <h4 className="h4 pricing-fit__item-price">Elevator Family</h4>
-                                  <span className="pricing-fit__item-package">650$ per annum</span>
+                                  <span className="pricing-fit__item-package">$650 per annum</span>
                                   <ul className="custom-ul pricing-fit__item-facilitys">
+                                    <li>All benefits usnder Explorer</li>
                                     <li>Global family network</li>
                                     <li>Digital “How to” Cards</li>
                                     <li>Black card Investment opportunities</li>
-                                    <li>Family Boat Cruises</li>
-                                    <li>Research</li>
-                                    <li>Online Training</li>
                                     <li>Heir Mentorship</li>
-                                    <li>Online Community</li>
                                   </ul>
                                   <a href="" className="pricing-fit__item-buy-plan">
                                     Pay
@@ -1093,18 +1296,11 @@ export default function Home() {
                               <div className="col-md-6 col-xl-4 fade_up_anim" data-delay=".6">
                                 <div className="pricing-fit__item">
                                   <h4 className="h4 pricing-fit__item-price">Evergreen Family</h4>
-                                  <span className="pricing-fit__item-package">2850$ per annum</span>
+                                  <span className="pricing-fit__item-package">$2850 per annum</span>
                                   <ul className="custom-ul pricing-fit__item-facilitys">
+                                    <li>All benefits under Elevator</li>
                                     <li>Full family membership (max of five)</li>
-                                    <li>Global family network</li>
-                                    <li>Digital “How to” Cards</li>
-                                    <li>Black card Investment opportunities</li>
-                                    <li>Family Boat Cruises</li>
-                                    <li>Research</li>
-                                    <li>Online Training</li>
                                     <li>Onsite Family Workshops</li>
-                                    <li>Heir Mentorship</li>
-                                    <li>Online Community</li>
                                     <li>Blockchain Document security and alert triggers</li>
                                     <li>Mediation Services</li>
                                     <li>Family Continuity Service</li>
@@ -1117,11 +1313,19 @@ export default function Home() {
                             </div>
                           </div>
                         </div>
-                        <p className='mt-4'>Subject to availability, services not in a membership package can be paid for separately
+                        {/* <p className='mt-4'>Subject to availability, services not in a membership package can be paid for separately
                           Family Boat Cruises are normally Aegean and Mediterranean seas and will still attract separate fees.
                           Membership covers availability and discounts levels
                           Heir Mentorship is only at Elevator Level by email
-                          Family Continuity Services are a package of advice and recommendations where an involuntary transition occurs</p>
+                          Family Continuity Services are a package of advice and recommendations where an involuntary transition occurs</p> */}
+                        <ul className='mt-5'>
+                          <li>Services not in a membership package can be paif for seperately.</li>
+                          <li>Family Boat Cruises are normally Aegean and Meditteranean seas and will still attract seperate fees.</li>
+                          <li>Each membership level has paid and free training.</li>
+                          <li>Heir Mentorship at Elevator Level is strictly by email.</li>
+                          <li>Family Continuity Services are a package of advice and reccomendations for involuntary and sudden transition events</li>
+
+                        </ul>
 
                       </div>
                       <div
